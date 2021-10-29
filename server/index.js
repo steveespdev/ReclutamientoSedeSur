@@ -58,7 +58,8 @@ app.post("/register", (req, res) => {
       "INSERT INTO users (email, password, name, role) VALUES (?,?,?,?)",
       [email, hash, name, "professor"],
       (err, result) => {
-        console.log(err);
+        if (err) console.log(err);
+        res.send(result);
       }
     );
   });
@@ -125,5 +126,5 @@ app.post("/login", (req, res) => {
 });
 
 app.listen(3001, () => {
-  console.log("runnig server!");
+  console.log("runnig server on port 3001!");
 });
