@@ -1,6 +1,6 @@
-import React from "react";
 import "./LogoBar.css";
-export const LogoBar = () => {
+
+const LogoBar = () => {
   return (
     <div className="bar">
       <a href="http://ucr.ac.cr">
@@ -9,3 +9,5 @@ export const LogoBar = () => {
     </div>
   );
 };
+
+export default LogoBar;

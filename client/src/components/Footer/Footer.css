@@ -1,0 +1,15 @@
+.footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: #666666;
+  padding: 0.5% 0.5%;
+  text-align: center;
+}
+.footer a {
+  text-decoration: none;
+  color: #ffffff;
+}
+.ucr-copyright {
+  padding-top: 5px;
+}

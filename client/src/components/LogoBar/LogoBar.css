@@ -1,7 +1,11 @@
 .bar {
   width: 100%;
   position: relative;
-  float: left;
+  display: flex;
   background-color: #41ade7;
-  height: 40px;
+  max-height: 49px;
+}
+.bar a {
+  text-decoration: none;
+  margin-left: 15px;
 }

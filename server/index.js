@@ -43,20 +43,20 @@ const db = mysql.createConnection({
   password: "adminroot",
   database: "reclutadb",
 });
+app.post("/reset-password", (req, res) => {});
 
 app.post("/register", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   const name = req.body.name;
-
   bycript.hash(password, saltRounds, (err, hash) => {
     if (err) {
       console.log(err);
     }
 
     db.query(
-      "INSERT INTO users (email, password, name, role) VALUES (?,?,?,?)",
-      [email, hash, name, "professor"],
+      "INSERT INTO users (name, email, password, role, new, status) VALUES (?,?,?,?,?,?)",
+      [name, email, hash, "professor", true, true],
       (err, result) => {
         if (err) console.log(err);
         res.send(result);
