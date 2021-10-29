@@ -14,10 +14,19 @@ const AdminDashboard = () => {
         history.push("/");
         console.log("no redirect");
     }
+
+    const sessionLogout = () => {
+        localStorage.removeItem("token");
+        setloggedInUser({ auth: false, role: "user" });
+        history.push("/");
+    }
     return (
-        <h1>
-            Admin Dashboard
-        </h1>
+        <>
+            <h1>
+                Admin Dashboard
+            </h1>
+            <button onClick={sessionLogout}>Logout</button>
+        </>
     );
 }
 
