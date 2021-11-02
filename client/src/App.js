@@ -20,7 +20,7 @@ const App = () => {
   });
 
   if (loggedInUser.auth === false) {
-    <Redirect to="/login" />;
+    <Redirect to="/sign-in" />;
   }
 
   return (
@@ -29,6 +29,7 @@ const App = () => {
         <LogoBar />
         <Switch>
           <Route path="/" exact component={SignIn} />
+          <Route path="/sign-in" exact component={SignIn} />
           <Route path="/dashboard" exact component={Dashboard} />
           <Route path="/sign-up" exact component={SignUp} />
         </Switch>

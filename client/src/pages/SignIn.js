@@ -4,22 +4,21 @@ import Axios from "axios";
 import "../App.css";
 import { LoginContext } from "../helper/Context";
 
-import { Card, Form, Button, FloatingLabel, Row } from "react-bootstrap";
+import { Card, Form, Button, FloatingLabel } from "react-bootstrap";
 
 const Signin = () => {
-  let { loggedInUser, setloggedInUser } = useContext(LoginContext);
-  console.log(loggedInUser);
+  const { loggedInUser, setloggedInUser } = useContext(LoginContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [loginStatus, setLoginStatus] = useState(false);
   const history = useHistory();
-
   //if axios is being used, ALWAYS use the following bit of code
   Axios.defaults.withCredentials = true;
 
-  const login = () => {
+  const login = (e) => {
+    e.preventDefault();
     Axios.post("http://localhost:3001/login", {
       email: email,
       password: password,
@@ -40,8 +39,6 @@ const Signin = () => {
         "x-access-token": localStorage.getItem("token"),
       },
     }).then((response) => {
-      console.log(response);
-      // console.log(response.data.user.role);
       if (response.data.user) {
         setloggedInUser({ auth: response.data.auth, role: response.data.user });
         history.push("/dashboard");
@@ -49,7 +46,6 @@ const Signin = () => {
         if (!loginStatus) {
           history.push("/");
         }
-        history.push("/");
       }
     });
   };
@@ -62,7 +58,7 @@ const Signin = () => {
         setLoginStatus(response.data.user[0].name);
       }
     });
-  }, []);
+  }, [loggedInUser]);
 
   return (
     <div align="center">
@@ -81,20 +77,32 @@ const Signin = () => {
         </Card.Header>
         <Card.Title>Cuenta Institucional UCR</Card.Title>
         <Card.Body style={{ textAlign: "left" }}>
-          <Form>
+          <Form onSubmit={login}>
             <FloatingLabel
               controlId="floatingInput"
               label="Correo institucional"
               className="mb-3"
             >
-              <Form.Control type="email" placeholder="usuario@ucr.ac.cr" />
+              <Form.Control
+                type="email"
+                placeholder="usuario@ucr.ac.cr"
+                onChange={(e) => {
+                  setEmail(e.currentTarget.value);
+                }}
+              />
             </FloatingLabel>
             <FloatingLabel
               className="mb-3"
               controlId="floatingPassword"
               label="Contraseña"
             >
-              <Form.Control type="password" placeholder="Contraseña" />
+              <Form.Control
+                type="password"
+                placeholder="Contraseña"
+                onChange={(e) => {
+                  setPassword(e.currentTarget.value);
+                }}
+              />
             </FloatingLabel>
 
             <Button
@@ -104,10 +112,10 @@ const Signin = () => {
             >
               Ingresar
             </Button>
-            <Button style={{ float: "right" }} variant="link">
-              ¿Olvido su contraseña?
-            </Button>
           </Form>
+          <Button style={{ float: "right" }} variant="link">
+            ¿Olvido su contraseña?
+          </Button>
         </Card.Body>
       </Card>
     </div>
