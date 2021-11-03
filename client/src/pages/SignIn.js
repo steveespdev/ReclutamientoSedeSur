@@ -23,6 +23,7 @@ const Signin = () => {
       email: email,
       password: password,
     }).then((response) => {
+      // console.log(response.data);
       if (!response.data.auth) {
         setLoginStatus(false);
       } else {
@@ -39,8 +40,11 @@ const Signin = () => {
         "x-access-token": localStorage.getItem("token"),
       },
     }).then((response) => {
-      if (response.data.user) {
-        setloggedInUser({ auth: response.data.auth, role: response.data.user });
+      if (response.data.auth) {
+        setloggedInUser({
+          auth: response.data.auth, role: response.data.role,
+          name: response.data.name, email: response.data.email
+        });
         history.push("/dashboard");
       } else {
         if (!loginStatus) {
@@ -54,11 +58,11 @@ const Signin = () => {
   // is refreshed or the tab is closed (cookies)
   useEffect(() => {
     Axios.get("http://localhost:3001/login").then((response) => {
-      if (response.data.loggedIn === true) {
-        setLoginStatus(response.data.user[0].name);
-      }
+      // if (response.data.loggedIn === true) {
+      //   // setLoginStatus(response.data.user[0].name);
+      // }
     });
-  }, [loggedInUser]);
+  }, []);
 
   return (
     <div align="center">

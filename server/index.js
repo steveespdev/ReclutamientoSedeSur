@@ -43,7 +43,7 @@ const db = mysql.createConnection({
   password: "adminroot",
   database: "reclutadb",
 });
-app.post("/reset-password", (req, res) => {});
+app.post("/reset-password", (req, res) => { });
 
 app.post("/register", (req, res) => {
   const email = req.body.email;
@@ -84,9 +84,11 @@ const verifyJWT = (req, res, next) => {
 
 app.get("/userAuth", verifyJWT, (req, res) => {
   // message: "Authentication is complete!",
+  // console.log(req.session.user[0]);
   res.send({
     auth: true,
-    userName: req.session.user[0].name,
+    name: req.session.user[0].name,
+    email: req.session.user[0].email,
     role: req.session.user[0].role,
   });
 });

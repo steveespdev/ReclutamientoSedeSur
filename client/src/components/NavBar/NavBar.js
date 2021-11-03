@@ -4,7 +4,9 @@ import { LoginContext } from "../../helper/Context";
 
 const NavBar = () => {
   let { loggedInUser, setloggedInUser } = useContext(LoginContext);
+  console.log(loggedInUser);
   const history = useHistory();
+
   const sessionLogout = () => {
     localStorage.removeItem("token");
     setloggedInUser({ auth: false, role: "user" });
@@ -46,14 +48,17 @@ const NavBar = () => {
               </Link>
             </li>
           </ul>
-          <div className="d-flex" style={{ marginRight: 10 }}>
-            {loggedInUser.userName}
+          <div className="d-flex" style={{ marginRight: 20, flexDirection: "column", fontSize: "18px" }}>
+            {loggedInUser.name}
+            <div style={{ fontSize: "14px" }}>
+              {loggedInUser.email}
+            </div>
           </div>
           <div className="d-flex">
             <button
               className="btn btn-primary"
               type="button"
-              style={{ paddingLeft: 30, paddingRight: 30 }}
+              style={{ paddingLeft: 40, paddingRight: 40 }}
               onClick={sessionLogout}
             >
               Salir
