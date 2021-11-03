@@ -6,8 +6,10 @@ const Footer = () => {
     <div className="footer">
       <div>
         <a
-          href="http://www.ucr.ac.cr/"
+          href="https://sededelsur.ucr.ac.cr/"
           title="Página principal de la Sede del Sur"
+          target="_blank"
+          rel="noreferrer"
         >
           Sede del Sur - Tel. 2511-7716
         </a>
@@ -16,6 +18,8 @@ const Footer = () => {
         <a
           href="http://www.ucr.ac.cr/"
           title="Página principal de la Universidad de Costa Rica"
+          target="_blank"
+          rel="noreferrer"
         >
           © {new Date().getFullYear()} Universidad de Costa Rica - Tel.
           2511-5000

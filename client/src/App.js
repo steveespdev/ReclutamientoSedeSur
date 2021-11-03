@@ -20,7 +20,7 @@ const App = () => {
   });
 
   if (loggedInUser.auth === false) {
-    <Redirect to="/sign-in" />;
+    <Redirect to="/" />;
   }
 
   return (

@@ -39,12 +39,12 @@ const NavBar = () => {
                 Link
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="" className="nav-link disabled">
-                Disabled
-              </Link>
-            </li>
           </ul>
+          <div className="d-flex">
+            <button className="btn btn-primary btn-md ms-1" type="button">
+              Cerrar Sesión
+            </button>
+          </div>
           <div className="d-flex">
             <button className="btn btn-primary btn-md ms-1" type="button">
               Cerrar Sesión
