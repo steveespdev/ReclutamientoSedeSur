@@ -23,7 +23,7 @@ app.use(
 );
 
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(
   session({
@@ -84,7 +84,11 @@ const verifyJWT = (req, res, next) => {
 
 app.get("/userAuth", verifyJWT, (req, res) => {
   // message: "Authentication is complete!",
-  res.send({ auth: true, user: req.session.user[0].role });
+  res.send({
+    auth: true,
+    userName: req.session.user[0].name,
+    role: req.session.user[0].role,
+  });
 });
 
 app.get("/login", (req, res) => {

@@ -1,16 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { LoginContext } from "../../helper/Context";
 
 const NavBar = () => {
+  let { loggedInUser, setloggedInUser } = useContext(LoginContext);
+  const history = useHistory();
+  const sessionLogout = () => {
+    localStorage.removeItem("token");
+    setloggedInUser({ auth: false, role: "user" });
+    history.push("/");
+  };
+
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light bg-light shadow mb-2 bg-body rounded"
       style={{ color: "#204C6F" }}
     >
       <div className="container-fluid">
-        <Link to="" className="navbar-brand">
-          Reclutamiento
-        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -40,14 +46,17 @@ const NavBar = () => {
               </Link>
             </li>
           </ul>
-          <div className="d-flex">
-            <button className="btn btn-primary btn-md ms-1" type="button">
-              Cerrar Sesión
-            </button>
+          <div className="d-flex" style={{ marginRight: 10 }}>
+            {loggedInUser.userName}
           </div>
           <div className="d-flex">
-            <button className="btn btn-primary btn-md ms-1" type="button">
-              Cerrar Sesión
+            <button
+              className="btn btn-primary"
+              type="button"
+              style={{ paddingLeft: 30, paddingRight: 30 }}
+              onClick={sessionLogout}
+            >
+              Salir
             </button>
           </div>
         </div>

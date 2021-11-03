@@ -12,7 +12,7 @@ import { LoginContext } from "./helper/Context";
 import LogoBar from "./components/LogoBar/LogoBar";
 import Footer from "./components/Footer/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import "./App.css";
 const App = () => {
   const [loggedInUser, setloggedInUser] = useState({
     auth: false,
@@ -24,18 +24,20 @@ const App = () => {
   }
 
   return (
-    <LoginContext.Provider value={{ loggedInUser, setloggedInUser }}>
-      <Router>
-        <LogoBar />
-        <Switch>
-          <Route path="/" exact component={SignIn} />
-          <Route path="/sign-in" exact component={SignIn} />
-          <Route path="/dashboard" exact component={Dashboard} />
-          <Route path="/sign-up" exact component={SignUp} />
-        </Switch>
-        <Footer />
-      </Router>
-    </LoginContext.Provider>
+    <div className="App">
+      <LoginContext.Provider value={{ loggedInUser, setloggedInUser }}>
+        <Router>
+          <LogoBar />
+          <Switch>
+            <Route path="/" exact component={SignIn} />
+            <Route path="/sign-in" exact component={SignIn} />
+            <Route path="/dashboard" exact component={Dashboard} />
+            <Route path="/sign-up" exact component={SignUp} />
+          </Switch>
+          <Footer />
+        </Router>
+      </LoginContext.Provider>
+    </div>
   );
 };
 
